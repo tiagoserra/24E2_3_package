@@ -21,7 +21,7 @@ void main() {
     });
 
     test('insert returns task with id', () async {
-      final task = Task(name: "Test Task", dateTime: DateTime.now());
+      final task = Task(name: "Test Task", dateTime: DateTime.now(), image: 'image');
       final taskJson = jsonEncode(task.toJson());
       const mockId = '123';
 
@@ -38,7 +38,7 @@ void main() {
     });
 
     test('update returns updated task', () async {
-      final task = Task(id: '123', name: "Test Task", dateTime: DateTime.now());
+      final task = Task(id: '123', name: "Test Task", dateTime: DateTime.now(), image: 'image');
       final taskJson = jsonEncode(task.toJson());
 
       when(FirebaseProvider.httpPut(
@@ -54,7 +54,7 @@ void main() {
     });
 
     test('delete returns true', () async {
-      final task = Task(id: '123', name: "Test Task", dateTime: DateTime.now());
+      final task = Task(id: '123', name: "Test Task", dateTime: DateTime.now(), image: 'image');
 
       // Mockando o método estático
       when(FirebaseProvider.httpDelete(
@@ -70,8 +70,8 @@ void main() {
 
     test('getAll returns list of tasks', () async {
       final mockResponse = jsonEncode({
-        '123': {'name': 'Test Task 1', 'dateTime': DateTime.now().toIso8601String()},
-        '456': {'name': 'Test Task 2', 'dateTime': DateTime.now().toIso8601String()},
+        '123': {'name': 'Test Task 1', 'dateTime': DateTime.now().toIso8601String(), 'image': 'image123'},
+        '456': {'name': 'Test Task 2', 'dateTime': DateTime.now().toIso8601String(), 'image': 'image456'},
       });
 
       when(FirebaseProvider.httpGet(
@@ -90,7 +90,7 @@ void main() {
     });
 
     test('getById returns a task', () async {
-      final mockResponse = jsonEncode({'name': 'Test Task', 'dateTime': DateTime.now().toIso8601String()});
+      final mockResponse = jsonEncode({'name': 'Test Task', 'dateTime': DateTime.now().toIso8601String(), 'image': 'image123'});
 
       // Mockando o método estático
       when(FirebaseProvider.httpGet(

@@ -21,6 +21,7 @@ void main() {
         id: '123',
         name: 'Test Task',
         dateTime: DateTime.now(),
+        image: 'image',
       );
 
       final json = task.toJson();
@@ -35,11 +36,13 @@ void main() {
         id: '123',
         name: 'Test Task',
         dateTime: dateTime,
+        image: 'image'
       );
 
       expect(task.id, '123');
       expect(task.name, 'Test Task');
       expect(task.dateTime, dateTime);
+      expect(task.image, 'image');
     });
   });
 }
